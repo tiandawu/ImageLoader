@@ -27,19 +27,15 @@ public class MyAdapter extends BaseAdapter {
         this.mImageUrl = imageUrl;
         ImageLoaderConfig config = new ImageLoaderConfig.Builder(context)
                 .setBitmapCache(new DoubleCache(mContext))
-//                .setBitmapCache(new MemoryCache())
                 .setLoadPolicy(new FIFOPolicy())
                 .setImageOnFail(mContext.getResources().getDrawable(R.drawable.not_found))
                 .setImageOnLoading(mContext.getResources().getDrawable(R.drawable.loading))
                 .setImageForEmptyURI(mContext.getResources().getDrawable(R.mipmap.ic_launcher))
-//                .setBitmapDisplayer(new CircleBitmapDisplayer(mContext.getResources().getColor(R.color.colorPrimaryDark), 5))
                 .setBitmapDisplayer(new RoundedBitmapDisplayer(10, 5))
                 .setImageDownLoader(new BaseImageDownLoader(mContext))
                 .build();
         ImageLoader.getInstance().init(config);
     }
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
